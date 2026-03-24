@@ -14,7 +14,11 @@ async function parseWelcomeMessage(template, messageObject, participants = []) {
       messageObject.jid
     );
     const participantCount = groupMetadata.participants.length;
-    const participant = participants[0]?.id;
+    const participantRaw = participants[0];
+    const participant =
+      typeof participantRaw === "string"
+        ? participantRaw
+        : participantRaw?.id;
     let participantNumber = "";
     let participantName = "";
     if (participant) {
